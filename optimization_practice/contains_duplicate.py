@@ -63,3 +63,26 @@ Optimized:   False  # O(n)
 =================================================
 
 """
+def has_duplicate_brute(nums):
+    for i in range(len(nums)):
+        for j in range(i+1,len(nums)):
+            if nums[i]==nums[j]:
+                return True
+    return False
+
+def has_duplicate_fast(nums):
+    seen = set()
+    for i in range(len(nums)):
+        if nums[i] not in seen:
+            seen.add(nums[i])
+        else: return True
+    return False
+
+raw_nums = input("Enter list of numbers separated by spaces: ")
+clean_nums = raw_nums.split()
+nums = []
+for i in range(len(clean_nums)):
+    nums.append(int(clean_nums[i].strip()))
+
+print("Brute Force:",has_duplicate_brute(nums))
+print("Optimised:",has_duplicate_fast(nums))
