@@ -79,3 +79,29 @@ overall O(n) algorithm.
 =================================================
 
 """
+def has_pair_brute(nums, k):
+    for i in range(len(nums)):
+        for j in range(i+1,len(nums)):
+            if abs(nums[i]+nums[j])==k:
+                return True
+    return False
+
+def has_pair_fast(nums, k):
+    all_nos =set()
+    for i in range(len(nums)):
+        all_nos.add(nums[i])
+    for i in range(len(nums)):
+        if ((nums[i]+k) in all_nos or (nums[i]-k) in all_nos):
+            return True
+    return False
+
+raw_nums = input("Enter list of numbers separated by spaces: ")
+clean_nums = raw_nums.split()
+nums = []
+for i in range(len(clean_nums)):
+    nums.append(int(clean_nums[i].strip()))
+
+k= int(input("k    ="))
+
+print("Brute Force:",has_pair_brute(nums, k))
+print("Optimised:",has_pair_fast(nums, k))
