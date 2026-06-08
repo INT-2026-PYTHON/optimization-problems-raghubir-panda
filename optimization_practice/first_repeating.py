@@ -83,3 +83,31 @@ element, giving an overall O(n) algorithm.
 =================================================
 
 """
+def first_repeating_brute(nums):
+    early_j = len(nums)
+    res = -1
+    for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                  if nums[j]==nums[i]:
+                        if j < early_j:
+                              early_j=j
+                              res = nums[j]
+    return res
+
+def first_repeating_fast(nums):
+      seen = set()
+      for i in range(len(nums)):
+            if nums[i] in seen:
+                  return nums[i]
+            else:
+                  seen.add(nums[i])
+      return -1
+
+raw_nums = input("Enter list of numbers separated by spaces: ")
+clean_nums = raw_nums.split()
+nums = []
+for i in range(len(clean_nums)):
+    nums.append(int(clean_nums[i].strip()))
+
+print("Brute Force:",first_repeating_brute(nums))
+print("Optimised:",first_repeating_fast(nums))           
